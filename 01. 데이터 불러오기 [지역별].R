@@ -126,7 +126,7 @@ head(temp_all_region)
 save(temp_all_region, file = "./01_data/temp_all_region.rdata")
 write.csv(temp_all_region, "./01_data/temp_all_region.csv")
 
-# 방문자수 + 폭염일수 병합
+# 방문자수 + 평균기온 병합
 merged_temp <- inner_join(visitor_all_region, temp_all_region, by = "시도명")
 
 visitor_temp_long <- merged_temp %>%
@@ -209,4 +209,5 @@ cor.test(visitor_heat_long$방문자수, visitor_heat_long$평균폭염일수, u
 visitor_heat_long %>%
   group_by(연도) %>%
   summarise(correlation = cor(방문자수, 평균폭염일수, use = "complete.obs"))
+
 
