@@ -78,8 +78,7 @@ cluster_summary <- aggregate(cluster_data,
 
 View(cluster_summary)  # 혹은 print(cluster_summary)
 
-
-
+# 클러스터별 지역 
 merged_data %>%
   group_by(cluster) %>%
   summarise(지역목록 = paste(시도명, collapse = ", "))
