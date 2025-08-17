@@ -58,7 +58,7 @@ head(fd_all_monthly, 12)
 save(fd_all_monthly, file = "./01_data/fd_all_monthly.rdata")
 write.csv(fd_all_monthly, "./01_data/fd_all_monthly.csv")
 
-# 2️⃣ 방문객수 데이터와 기온 데이터 합병
+# 방문객수 데이터와 기온 데이터 합병
 # visitor_monthly_all에도 '기준연월' 컬럼이 있어야 하고, 타입 확인 필요
 str(fd_all_monthly$기준연월)  # integer인지 확인
 fd_all_monthly$기준연월 <- as.integer(fd_all_monthly$기준연월)
@@ -67,7 +67,7 @@ merged_fd <- inner_join(visitor_all_monthly, fd_all_monthly, by = "기준연월"
 head(merged_fd)
 save(merged_fd, file = "./02_merged/merged_fd.rdata")
 
-# 3️⃣ 방문객수와 평균기온 상관계수 계산
+# 방문객수와 평균기온 상관계수 계산
 # NA 제거 및 numeric 확인
 merged_fd <- merged_fd %>%
   filter(!is.na(방문자수) & !is.na(미세먼지))
@@ -93,7 +93,7 @@ head(temp_all_monthly, 10)
 save(temp_all_monthly, file = "./01_data/temp_all_monthly.rdata")
 write.csv(temp_all_monthly, "./01_data/temp_all_monthly.csv")
 
-# 2️⃣ 방문객수 데이터와 기온 데이터 합병
+# 2️방문객수 데이터와 기온 데이터 합병
 # visitor_monthly_all에도 '기준연월' 컬럼이 있어야 하고, 타입 확인 필요
 str(temp_all_monthly$기준연월)  # integer인지 확인
 temp_all_monthly$기준연월 <- as.integer(temp_all_monthly$기준연월)
@@ -102,7 +102,7 @@ merged_temp <- inner_join(visitor_all_monthly, temp_all_monthly, by = "기준연
 head(merged_temp)
 save(merged_temp, file = "./02_merged/merged_temp.rdata")
 
-# 3️⃣ 방문객수와 평균기온 상관계수 계산
+# 방문객수와 평균기온 상관계수 계산
 # NA 제거 및 numeric 확인
 merged_temp <- merged_temp %>%
   filter(!is.na(방문자수) & !is.na(평균기온))
@@ -142,3 +142,4 @@ heat_all_monthly$기준연월 <- as.integer(heat_all_monthly$기준연월)
 merged_heat <- inner_join(visitor_all_monthly, heat_all_monthly, by = "기준연월")
 head(merged_heat)
 save(merged_heat, file = "./02_merged/merged_heat.rdata")
+
